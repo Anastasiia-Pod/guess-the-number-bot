@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './App.css'; 
 
 function App() {
   const [number, setNumber] = useState('');
@@ -14,7 +15,7 @@ function App() {
       setGameStarted(true);
       setGameOver(false);
       setNumber('');
-      setMessage('Game started! Enter your guess.');
+      setMessage('Game started! Please guess a number from 1 to 10.');
     } catch (error) {
       setMessage('Error starting the game.');
     }
@@ -27,9 +28,9 @@ function App() {
       const result = response.data.message;
       if (result === 'correct') {
         setMessage('You have guessed the number correctly! Click "Start New Game" to play again.');
-        setGameStarted(false); 
-        setGameOver(true); 
-        setNumber(''); 
+        setGameStarted(false);
+        setGameOver(true);
+        setNumber('');
       } else {
         setNumber('');
         setMessage(result === 'higher' ? 'The secret number is higher' : 'The secret number is lower');
@@ -41,14 +42,15 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app-container">
       <h1>Guess the Number</h1>
       {gameStarted && !gameOver ? (
-        <div>
+        <div className="input-container">
           <input
             type="number"
             value={number}
             onChange={(e) => setNumber(e.target.value)}
+            placeholder="Enter your guess"
           />
           <button onClick={guessNumber}>Submit Guess</button>
         </div>
@@ -57,11 +59,12 @@ function App() {
           <button onClick={startGame}>Start New Game</button>
         </div>
       )}
-      <p>{message}</p> 
+      <p>{message}</p>
     </div>
   );
 }
 
 export default App;
+
 
 
