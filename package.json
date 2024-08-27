@@ -2,11 +2,11 @@
   "name": "guess-the-number-bot",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
-    "start:frontend": "cd frontend && npm start",
-    "start:backend": "cd backend && npm start"
+    "build": "npm run build --prefix frontend",
+    "start": "node backend/index.js"
   },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
+
